@@ -1,0 +1,29 @@
+graph l2ls.clab {
+	Leaf-3--Host-B[ color=black ];
+	Leaf-4--Spine-2[ color=black ];
+	Spine-1--Spine-2[ color=black ];
+	Leaf-3--Spine-2[ color=black ];
+	Leaf-2--Spine-2[ color=black ];
+	Leaf-3--Spine-1[ color=black ];
+	Leaf-4--Host-B[ color=black ];
+	Leaf-1--Leaf-2[ color=black ];
+	Leaf-1--Spine-1[ color=black ];
+	Spine-1--Spine-2[ color=black ];
+	Leaf-3--Leaf-4[ color=black ];
+	Leaf-1--Spine-2[ color=black ];
+	Leaf-1--Host-A[ color=black ];
+	Leaf-2--Host-A[ color=black ];
+	Leaf-3--Leaf-4[ color=black ];
+	Leaf-4--Spine-1[ color=black ];
+	Leaf-1--Leaf-2[ color=black ];
+	Leaf-2--Spine-1[ color=black ];
+	Host-A [ color=red, fillcolor=red, label=Host-A, style=filled, xlabel=linux ];
+	Host-B [ color=red, fillcolor=red, label=Host-B, style=filled, xlabel=linux ];
+	Leaf-1 [ color=red, fillcolor=red, label=Leaf-1, style=filled, xlabel=ceos ];
+	Leaf-2 [ color=red, fillcolor=red, label=Leaf-2, style=filled, xlabel=ceos ];
+	Leaf-3 [ color=red, fillcolor=red, label=Leaf-3, style=filled, xlabel=ceos ];
+	Leaf-4 [ color=red, fillcolor=red, label=Leaf-4, style=filled, xlabel=ceos ];
+	Spine-1 [ color=red, fillcolor=red, label=Spine-1, style=filled, xlabel=ceos ];
+	Spine-2 [ color=red, fillcolor=red, label=Spine-2, style=filled, xlabel=ceos ];
+
+}

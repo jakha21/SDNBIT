@@ -1,0 +1,57 @@
+! Startup-config last modified at Fri May 30 20:05:15 2025 by root
+! device: Spine-2 (cEOSLab, EOS-4.33.3F-41743436.4333F (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$WPCXr90.yW3ji3fR$1fzyEavWjFqy8B0glE264UFVUnq.rWxGuA91hMueYGcjZU6IrSKt/qYdL072nMghnnKWOeQFQCnEG09VuLZfS0
+!
+management api http-commands
+   no shutdown
+!
+no service interface inactive port-id allocation disabled
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname Spine-2
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+management api gnmi
+   transport grpc default
+!
+management api netconf
+   transport ssh default
+!
+interface Ethernet1
+!
+interface Ethernet2
+!
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Management0
+   ip address 172.19.0.11/24
+!
+no ip routing
+!
+ip route 0.0.0.0/0 172.19.0.1
+!
+router multicast
+   ipv4
+      software-forwarding kernel
+   !
+   ipv6
+      software-forwarding kernel
+!
+end

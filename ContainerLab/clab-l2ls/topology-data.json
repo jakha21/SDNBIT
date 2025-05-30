@@ -1,0 +1,521 @@
+{
+  "name": "l2ls",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "",
+      "mgmt": {
+        "network": "mgmt",
+        "bridge": "br-001d0c04ae7b",
+        "ipv4-subnet": "172.19.0.0/24",
+        "ipv4-gw": "172.19.0.1",
+        "external-access": true
+      }
+    }
+  },
+  "ssh-pub-keys": [],
+  "nodes": {
+    "Host-A": {
+      "index": "0",
+      "shortname": "Host-A",
+      "longname": "Host-A",
+      "fqdn": "Host-A.l2ls.io",
+      "group": "",
+      "labdir": "/home/jakha/SDNBIT/ContainerLab/clab-l2ls/Host-A",
+      "kind": "linux",
+      "image": "alpine:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.19.0.2",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-001d0c04ae7b",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/jakha/SDNBIT/ContainerLab/clab-l2ls/Host-A",
+        "clab-node-longname": "Host-A",
+        "clab-node-name": "Host-A",
+        "clab-node-type": "",
+        "clab-owner": "jakha",
+        "clab-topo-file": "/home/jakha/SDNBIT/ContainerLab/l2ls.clab.yml",
+        "containerlab": "l2ls"
+      },
+      "port-bindings": [
+      ]
+    },
+    "Host-B": {
+      "index": "1",
+      "shortname": "Host-B",
+      "longname": "Host-B",
+      "fqdn": "Host-B.l2ls.io",
+      "group": "",
+      "labdir": "/home/jakha/SDNBIT/ContainerLab/clab-l2ls/Host-B",
+      "kind": "linux",
+      "image": "alpine:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.19.0.3",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-001d0c04ae7b",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/jakha/SDNBIT/ContainerLab/clab-l2ls/Host-B",
+        "clab-node-longname": "Host-B",
+        "clab-node-name": "Host-B",
+        "clab-node-type": "",
+        "clab-owner": "jakha",
+        "clab-topo-file": "/home/jakha/SDNBIT/ContainerLab/l2ls.clab.yml",
+        "containerlab": "l2ls"
+      },
+      "port-bindings": [
+      ]
+    },
+    "Leaf-1": {
+      "index": "2",
+      "shortname": "Leaf-1",
+      "longname": "Leaf-1",
+      "fqdn": "Leaf-1.l2ls.io",
+      "group": "",
+      "labdir": "/home/jakha/SDNBIT/ContainerLab/clab-l2ls/Leaf-1",
+      "kind": "ceos",
+      "image": "ceos:4.33.3F",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.19.0.12",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "00:1c:73:31:a2:09",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-001d0c04ae7b",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/jakha/SDNBIT/ContainerLab/clab-l2ls/Leaf-1",
+        "clab-node-longname": "Leaf-1",
+        "clab-node-name": "Leaf-1",
+        "clab-node-type": "",
+        "clab-owner": "jakha",
+        "clab-topo-file": "/home/jakha/SDNBIT/ContainerLab/l2ls.clab.yml",
+        "containerlab": "l2ls"
+      },
+      "port-bindings": [
+      ]
+    },
+    "Leaf-2": {
+      "index": "3",
+      "shortname": "Leaf-2",
+      "longname": "Leaf-2",
+      "fqdn": "Leaf-2.l2ls.io",
+      "group": "",
+      "labdir": "/home/jakha/SDNBIT/ContainerLab/clab-l2ls/Leaf-2",
+      "kind": "ceos",
+      "image": "ceos:4.33.3F",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.19.0.13",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "00:1c:73:3e:a9:ae",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-001d0c04ae7b",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/jakha/SDNBIT/ContainerLab/clab-l2ls/Leaf-2",
+        "clab-node-longname": "Leaf-2",
+        "clab-node-name": "Leaf-2",
+        "clab-node-type": "",
+        "clab-owner": "jakha",
+        "clab-topo-file": "/home/jakha/SDNBIT/ContainerLab/l2ls.clab.yml",
+        "containerlab": "l2ls"
+      },
+      "port-bindings": [
+      ]
+    },
+    "Leaf-3": {
+      "index": "4",
+      "shortname": "Leaf-3",
+      "longname": "Leaf-3",
+      "fqdn": "Leaf-3.l2ls.io",
+      "group": "",
+      "labdir": "/home/jakha/SDNBIT/ContainerLab/clab-l2ls/Leaf-3",
+      "kind": "ceos",
+      "image": "ceos:4.33.3F",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.19.0.14",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "00:1c:73:c0:78:c5",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-001d0c04ae7b",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/jakha/SDNBIT/ContainerLab/clab-l2ls/Leaf-3",
+        "clab-node-longname": "Leaf-3",
+        "clab-node-name": "Leaf-3",
+        "clab-node-type": "",
+        "clab-owner": "jakha",
+        "clab-topo-file": "/home/jakha/SDNBIT/ContainerLab/l2ls.clab.yml",
+        "containerlab": "l2ls"
+      },
+      "port-bindings": [
+      ]
+    },
+    "Leaf-4": {
+      "index": "5",
+      "shortname": "Leaf-4",
+      "longname": "Leaf-4",
+      "fqdn": "Leaf-4.l2ls.io",
+      "group": "",
+      "labdir": "/home/jakha/SDNBIT/ContainerLab/clab-l2ls/Leaf-4",
+      "kind": "ceos",
+      "image": "ceos:4.33.3F",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.19.0.15",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "00:1c:73:e5:a9:77",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-001d0c04ae7b",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/jakha/SDNBIT/ContainerLab/clab-l2ls/Leaf-4",
+        "clab-node-longname": "Leaf-4",
+        "clab-node-name": "Leaf-4",
+        "clab-node-type": "",
+        "clab-owner": "jakha",
+        "clab-topo-file": "/home/jakha/SDNBIT/ContainerLab/l2ls.clab.yml",
+        "containerlab": "l2ls"
+      },
+      "port-bindings": [
+      ]
+    },
+    "Spine-1": {
+      "index": "6",
+      "shortname": "Spine-1",
+      "longname": "Spine-1",
+      "fqdn": "Spine-1.l2ls.io",
+      "group": "",
+      "labdir": "/home/jakha/SDNBIT/ContainerLab/clab-l2ls/Spine-1",
+      "kind": "ceos",
+      "image": "ceos:4.33.3F",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.19.0.10",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "00:1c:73:a8:31:81",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-001d0c04ae7b",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/jakha/SDNBIT/ContainerLab/clab-l2ls/Spine-1",
+        "clab-node-longname": "Spine-1",
+        "clab-node-name": "Spine-1",
+        "clab-node-type": "",
+        "clab-owner": "jakha",
+        "clab-topo-file": "/home/jakha/SDNBIT/ContainerLab/l2ls.clab.yml",
+        "containerlab": "l2ls"
+      },
+      "port-bindings": [
+      ]
+    },
+    "Spine-2": {
+      "index": "7",
+      "shortname": "Spine-2",
+      "longname": "Spine-2",
+      "fqdn": "Spine-2.l2ls.io",
+      "group": "",
+      "labdir": "/home/jakha/SDNBIT/ContainerLab/clab-l2ls/Spine-2",
+      "kind": "ceos",
+      "image": "ceos:4.33.3F",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.19.0.11",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "00:1c:73:41:59:29",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-001d0c04ae7b",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/jakha/SDNBIT/ContainerLab/clab-l2ls/Spine-2",
+        "clab-node-longname": "Spine-2",
+        "clab-node-name": "Spine-2",
+        "clab-node-type": "",
+        "clab-owner": "jakha",
+        "clab-topo-file": "/home/jakha/SDNBIT/ContainerLab/l2ls.clab.yml",
+        "containerlab": "l2ls"
+      },
+      "port-bindings": [
+      ]
+    }
+  },
+  "links": [
+    {
+      "a": {
+        "node": "Leaf-1",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:ee:02:57",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Leaf-2",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:7a:db:72",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Leaf-1",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:d4:c9:81",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Leaf-2",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:3a:60:71",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Leaf-1",
+        "interface": "eth3",
+        "mac": "aa:c1:ab:96:64:29",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Spine-1",
+        "interface": "eth3",
+        "mac": "aa:c1:ab:da:d3:1a",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Leaf-1",
+        "interface": "eth4",
+        "mac": "aa:c1:ab:e0:ec:c1",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Spine-2",
+        "interface": "eth3",
+        "mac": "aa:c1:ab:9c:5d:f0",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Leaf-1",
+        "interface": "eth5",
+        "mac": "aa:c1:ab:0b:61:ae",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Host-A",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:0f:40:5f",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Leaf-2",
+        "interface": "eth3",
+        "mac": "aa:c1:ab:c1:3c:f3",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Spine-1",
+        "interface": "eth4",
+        "mac": "aa:c1:ab:6f:00:46",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Leaf-2",
+        "interface": "eth4",
+        "mac": "aa:c1:ab:49:67:d4",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Spine-2",
+        "interface": "eth4",
+        "mac": "aa:c1:ab:4d:c5:2c",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Leaf-2",
+        "interface": "eth5",
+        "mac": "aa:c1:ab:61:9d:01",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Host-A",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:b7:79:f9",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Spine-1",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:86:fd:0f",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Spine-2",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:5c:12:0e",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Spine-1",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:23:07:14",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Spine-2",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:94:b5:b1",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Leaf-3",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:c4:a5:f2",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Leaf-4",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:ad:00:5a",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Leaf-3",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:e1:86:0c",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Leaf-4",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:ff:52:7e",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Leaf-3",
+        "interface": "eth3",
+        "mac": "aa:c1:ab:10:eb:0d",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Spine-1",
+        "interface": "eth5",
+        "mac": "aa:c1:ab:4a:af:64",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Leaf-3",
+        "interface": "eth4",
+        "mac": "aa:c1:ab:0b:a4:ac",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Spine-2",
+        "interface": "eth5",
+        "mac": "aa:c1:ab:75:8a:eb",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Leaf-3",
+        "interface": "eth5",
+        "mac": "aa:c1:ab:7d:65:6c",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Host-B",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:e8:06:bc",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Leaf-4",
+        "interface": "eth3",
+        "mac": "aa:c1:ab:35:3a:6d",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Spine-1",
+        "interface": "eth6",
+        "mac": "aa:c1:ab:3e:94:00",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Leaf-4",
+        "interface": "eth4",
+        "mac": "aa:c1:ab:58:21:47",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Spine-2",
+        "interface": "eth6",
+        "mac": "aa:c1:ab:4b:8c:a6",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "Leaf-4",
+        "interface": "eth5",
+        "mac": "aa:c1:ab:5f:05:25",
+        "peer": "z"
+      },
+      "z": {
+        "node": "Host-B",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:df:35:26",
+        "peer": "a"
+      }
+    }
+  ]
+}

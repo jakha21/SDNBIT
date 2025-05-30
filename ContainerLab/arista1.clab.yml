@@ -1,0 +1,60 @@
+name: aristadcf
+prefix: ""
+
+topology:
+  nodes:
+    leaf-1:
+      kind: ceos
+      image: ceos:4.33.3F
+    leaf-2:
+      kind: ceos
+      image: ceos:4.33.3F
+    leaf-3:
+      kind: ceos
+      image: ceos:4.33.3F
+    leaf-4:
+      kind: ceos
+      image: ceos:4.33.3F
+    spine-1:
+      kind: ceos
+      image: ceos:4.33.3F
+    spine-2:
+      kind: ceos
+      image: ceos:4.33.3F
+    spine-3:
+      kind: ceos
+      image: ceos:4.33.3F
+    spine-4:
+      kind: ceos
+      image: ceos:4.33.3F
+
+    server-1:
+      kind: linux
+      image: alpine:latest
+    server-2:
+      kind: linux
+      image: alpine:latest
+    server-3:
+      kind: linux
+      image: alpine:latest
+    server-4:
+      kind: linux
+      image: alpine:latest
+  
+  links:
+    - endpoints: ["leaf-1:eth1", "spine-1:eth1"]
+    - endpoints: ["leaf-1:eth2", "spine-2:eth1"]
+    - endpoints: ["leaf-2:eth1", "spine-1:eth2"]
+    - endpoints: ["leaf-2:eth2", "spine-2:eth2"]
+    - endpoints: ["leaf-3:eth1", "spine-1:eth3"]
+    - endpoints: ["leaf-3:eth2", "spine-2:eth3"]
+    - endpoints: ["leaf-4:eth1", "spine-1:eth4"]
+    - endpoints: ["leaf-4:eth2", "spine-2:eth4"]
+    - endpoints: ["leaf-1:eth15", "server-1:eth1"]
+    - endpoints: ["leaf-2:eth15", "server-2:eth1"]
+    - endpoints: ["leaf-3:eth15", "server-3:eth1"]
+    - endpoints: ["leaf-4:eth15", "server-4:eth1"] 
+    - endpoints: ["leaf-1:eth16", "server-1:eth2"]
+    - endpoints: ["leaf-2:eth16", "server-2:eth2"]
+    - endpoints: ["leaf-3:eth16", "server-3:eth2"]
+    - endpoints: ["leaf-4:eth16", "server-4:eth2"] 
