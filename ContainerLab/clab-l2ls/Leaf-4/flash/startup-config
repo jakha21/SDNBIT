@@ -1,9 +1,9 @@
-! Startup-config last modified at Fri May 30 20:05:11 2025 by root
+! Startup-config last modified at Sat May 31 00:13:05 2025 by admin
 ! device: Leaf-4 (cEOSLab, EOS-4.33.3F-41743436.4333F (engineering build))
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$khxFn6PXNi2DFh.b$UjqaQkhkpOfT3NGvcQO3YfySuAC7GgF8j3TxCuKP5wP9LX471U9JW1lL978F5WKfqMYzTrRzJea8LkSVD7Z1/0
+username admin privilege 15 role network-admin secret sha512 $6$D.mJvdjnYXr8zmQ8$GeyeHgqitGKlqak8oUCI0PAvz3qpjbI80c7tjKGHj0Sn0LsT1J69FHXiapXo6uZ.Q6ov7JqFOaENqK4Z2PLFv/
 !
 management api http-commands
    no shutdown
@@ -22,27 +22,83 @@ system l1
    unsupported speed action error
    unsupported error-correction action error
 !
+vlan 34
+!
+vlan 4094
+   trunk group MLAGPEER
+!
 management api gnmi
    transport grpc default
 !
 management api netconf
    transport ssh default
 !
+interface Port-Channel4
+   description Host-B
+   switchport access vlan 34
+   mlag 4
+!
+interface Port-Channel10
+   description LEAF_MLAG_PEER
+   switchport mode trunk
+   switchport trunk group MLAGPEER
+!
+interface Port-Channel34
+   description Leaf4-to-Spine
+   switchport mode trunk
+   mlag 34
+!
 interface Ethernet1
+   description LEAF_PEER_PORT1
+   mtu 9214
+   switchport mode trunk
+   channel-group 10 mode active
 !
 interface Ethernet2
+   description LEAF_PEER_PORT2
+   mtu 9214
+   switchport mode trunk
+   channel-group 10 mode active
 !
 interface Ethernet3
+   description TO SPINE1
+   mtu 9214
+   switchport mode trunk
+   channel-group 34 mode active
 !
 interface Ethernet4
+   description TO SPINE2
+   mtu 9214
+   switchport mode trunk
+   channel-group 34 mode active
 !
 interface Ethernet5
+   description Host-B Link-2
+   mtu 9214
+   channel-group 4 mode active
 !
 interface Management0
    ip address 172.19.0.15/24
 !
+interface Vlan4094
+   description MLAG PEER LINK
+   ip address 172.16.34.2/30
+!
 no ip routing
 !
+mlag configuration
+   domain-id MLAG34
+   local-interface Vlan4094
+   peer-address 172.16.34.1
+   peer-link Port-Channel10
+!
 ip route 0.0.0.0/0 172.19.0.1
+!
+router multicast
+   ipv4
+      software-forwarding kernel
+   !
+   ipv6
+      software-forwarding kernel
 !
 end

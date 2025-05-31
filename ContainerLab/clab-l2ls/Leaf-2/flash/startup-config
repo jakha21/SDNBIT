@@ -1,9 +1,9 @@
-! Startup-config last modified at Fri May 30 20:05:06 2025 by root
+! Startup-config last modified at Sat May 31 00:12:57 2025 by admin
 ! device: Leaf-2 (cEOSLab, EOS-4.33.3F-41743436.4333F (engineering build))
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$riwL6vE1EjRBH2ry$S7PGGa7XtH5AVMbkB5eaofCIo8tqe1HuAESa/OfBicKpm63atETbWqcT02ZmRYJTibY3f74KNGVgsYc.kyTlc0
+username admin privilege 15 role network-admin secret sha512 $6$7eni88JX8Wt8k0cl$k1qlSqmmpD7mZWBODzWvhHFZ0c9iBTrcl12BgKN/CWeIxrQPOO.PNH7i3y80.vt3ibOAwl2mMX5OiBLul3S/i.
 !
 management api http-commands
    no shutdown
@@ -22,27 +22,105 @@ system l1
    unsupported speed action error
    unsupported error-correction action error
 !
+vlan 12
+!
+vlan 100
+   name SERVER-VLAN-172.20.0.0/24
+!
+vlan 200
+   name SERVER-VLAN-172.30.0.0/24
+!
+vlan 4094
+   trunk group MLAGPEER
+!
 management api gnmi
    transport grpc default
 !
 management api netconf
    transport ssh default
 !
+interface Port-Channel4
+   description Host-A
+   switchport trunk allowed vlan 100,200
+   switchport mode trunk
+   no snmp trap link-change
+   port-channel lacp fallback static
+   mlag 4
+   spanning-tree portfast edge
+   spanning-tree bpduguard enable
+!
+interface Port-Channel10
+   description LEAF_PEER
+   switchport mode trunk
+   switchport trunk group MLAGPEER
+!
+interface Port-Channel12
+   description Leaf2-to-Spine
+   switchport mode trunk
+   mlag 12
+!
 interface Ethernet1
+   description LEAF_PEER_PORT1
+   mtu 9214
+   switchport mode trunk
+   channel-group 10 mode active
 !
 interface Ethernet2
+   description LEAF_PEER_PORT2
+   mtu 9214
+   switchport mode trunk
+   channel-group 10 mode active
 !
 interface Ethernet3
+   description TO SPINE1
+   mtu 9214
+   switchport mode trunk
+   channel-group 12 mode active
 !
 interface Ethernet4
+   description TO SPINE2
+   mtu 9214
+   switchport mode trunk
+   channel-group 12 mode active
 !
 interface Ethernet5
+   description Host-A Link-2
+   channel-group 4 mode active
 !
 interface Management0
    ip address 172.19.0.13/24
 !
+interface Vlan100
+   description SVI-FOR-VLAN-100
+   mtu 9214
+   ip address 172.20.0.3/24
+   ip virtual-router address 172.20.0.1
+!
+interface Vlan200
+   description SVI-FOR-VLAN-200
+   mtu 9214
+   ip address 172.30.0.3/24
+   ip virtual-router address 172.30.0.1
+!
+interface Vlan4094
+   description MLAG PEER LINK
+   ip address 172.16.12.2/30
+!
 no ip routing
 !
+mlag configuration
+   domain-id MLAG12
+   local-interface Vlan4094
+   peer-address 172.16.12.1
+   peer-link Port-Channel10
+!
 ip route 0.0.0.0/0 172.19.0.1
+!
+router multicast
+   ipv4
+      software-forwarding kernel
+   !
+   ipv6
+      software-forwarding kernel
 !
 end

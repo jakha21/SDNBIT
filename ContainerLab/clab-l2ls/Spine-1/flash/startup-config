@@ -1,9 +1,9 @@
-! Startup-config last modified at Fri May 30 20:05:13 2025 by root
+! Startup-config last modified at Sat May 31 00:12:59 2025 by admin
 ! device: Spine-1 (cEOSLab, EOS-4.33.3F-41743436.4333F (engineering build))
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$aeLEDfYEz4bMB/RX$Xq3K08J77qExfbRbENQbHmgEPOD4Pu085WoM9RbukejSYVSFFuh4fERcjFkZ0vtNV.8yf1pbB2dsSqePbAarP1
+username admin privilege 15 role network-admin secret sha512 $6$TaEraYkimDzpLA.n$tumVAoe1Oa65MavWIeYRSITtwWz1hGSR7gcyWahcHq4jmr3f.FewcIszEhv//qRvn1F7q1VX/aCJJM7uQZdjK/
 !
 management api http-commands
    no shutdown
@@ -22,28 +22,82 @@ system l1
    unsupported speed action error
    unsupported error-correction action error
 !
+vlan 4094
+   trunk group MLAGPEER
+!
 management api gnmi
    transport grpc default
 !
 management api netconf
    transport ssh default
 !
+interface Port-Channel10
+   description SPINE_MLAG_PEER
+   switchport mode trunk
+   switchport trunk group MLAGPEER
+!
+interface Port-Channel12
+   description Spine-to-Leaf1-2
+   switchport trunk allowed vlan 100
+   switchport mode trunk
+   mlag 12
+!
+interface Port-Channel34
+   description Spine-to-Leaf3-4
+   switchport trunk allowed vlan 100
+   switchport mode trunk
+   mlag 34
+!
 interface Ethernet1
+   description SPINE_PEER_PORT1
+   mtu 9214
+   switchport mode trunk
+   channel-group 10 mode active
 !
 interface Ethernet2
+   description SPINE_PEER_PORT2
+   mtu 9214
+   switchport mode trunk
+   channel-group 10 mode active
 !
 interface Ethernet3
+   description TO LEAF1
+   mtu 9214
+   switchport mode trunk
+   channel-group 12 mode active
 !
 interface Ethernet4
+   description TO LEAF2
+   mtu 9214
+   switchport mode trunk
+   channel-group 12 mode active
 !
 interface Ethernet5
+   description TO LEAF3
+   mtu 9214
+   switchport mode trunk
+   channel-group 34 mode active
 !
 interface Ethernet6
+   description TO LEAF4
+   mtu 9214
+   switchport mode trunk
+   channel-group 34 mode active
 !
 interface Management0
    ip address 172.19.0.10/24
 !
+interface Vlan4094
+   description MLAG PEER LINK
+   ip address 172.16.11.1/30
+!
 no ip routing
+!
+mlag configuration
+   domain-id MLAG01
+   local-interface Vlan4094
+   peer-address 172.16.11.2
+   peer-link Port-Channel10
 !
 ip route 0.0.0.0/0 172.19.0.1
 !

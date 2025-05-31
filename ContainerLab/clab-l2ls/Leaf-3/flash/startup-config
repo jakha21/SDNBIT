@@ -1,9 +1,9 @@
-! Startup-config last modified at Fri May 30 20:05:16 2025 by root
+! Startup-config last modified at Sat May 31 00:13:03 2025 by admin
 ! device: Leaf-3 (cEOSLab, EOS-4.33.3F-41743436.4333F (engineering build))
 !
 no aaa root
 !
-username admin privilege 15 role network-admin secret sha512 $6$9D9QDK9J4OMWMCn3$R5CFdtVjf1Aob03HYtcymL400FPJxX0P6D1s7GWqAT8uxrFcrMN90JiCCEeS6oFNDXG6pUjXUCrPS3VdiERcB0
+username admin privilege 15 role network-admin secret sha512 $6$M4Npl3h.P.hmqQ1T$oJNqZIIdkeHTRkquL89YuyVC0aYY6YcgHUpg9evcW8ZCx4fCVL8wHzC2iqWa4tbFdq454ejAuI.ANJ/WJTi4c/
 !
 management api http-commands
    no shutdown
@@ -22,26 +22,78 @@ system l1
    unsupported speed action error
    unsupported error-correction action error
 !
+vlan 12,34,100
+!
+vlan 4094
+   trunk group MLAGPEER
+!
 management api gnmi
    transport grpc default
 !
 management api netconf
    transport ssh default
 !
+interface Port-Channel10
+   description LEAF_MLAG_PEER
+   switchport mode trunk
+   switchport trunk group MLAGPEER
+!
+interface Port-Channel34
+   description Leaf3-to-Spine
+   switchport trunk allowed vlan 100
+   switchport mode trunk
+   mlag 34
+!
 interface Ethernet1
+   description LEAF_PEER_PORT1
+   mtu 9214
+   switchport mode trunk
+   channel-group 10 mode active
 !
 interface Ethernet2
+   description LEAF_PEER_PORT2
+   mtu 9214
+   switchport mode trunk
+   channel-group 10 mode active
 !
 interface Ethernet3
+   description TO SPINE1
+   mtu 9214
+   switchport mode trunk
+   channel-group 34 mode active
 !
 interface Ethernet4
+   description TO SPINE2
+   mtu 9214
+   switchport mode trunk
+   channel-group 34 mode active
 !
 interface Ethernet5
+   description Host-B Link-1
+   switchport access vlan 100
+   no snmp trap link-change
+   spanning-tree portfast edge
+   spanning-tree bpduguard enable
 !
 interface Management0
    ip address 172.19.0.14/24
 !
+interface Vlan100
+   description SVI-FOR-VLAN-100
+   mtu 9214
+   ip address 172.20.0.1/24
+!
+interface Vlan4094
+   description MLAG PEER LINK
+   ip address 172.16.34.1/30
+!
 no ip routing
+!
+mlag configuration
+   domain-id MLAG34
+   local-interface Vlan4094
+   peer-address 172.16.34.2
+   peer-link Port-Channel10
 !
 ip route 0.0.0.0/0 172.19.0.1
 !
